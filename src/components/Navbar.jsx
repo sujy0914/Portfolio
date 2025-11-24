@@ -6,7 +6,8 @@ function Navbar() {
   const menu = ["About me", "Skills", "Projects", "Contact"];
 
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId.toLowerCase().replace(' ', ''));
+    const id = sectionId.toLowerCase().replace(' ', '');
+    const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }

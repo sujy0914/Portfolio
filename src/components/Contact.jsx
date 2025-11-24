@@ -25,13 +25,14 @@ function Contact() {
       </div>
     );
 
-    return contact.link ? (
-      <a href={contact.link} target="_blank" rel="noopener noreferrer" className="block">
-        {content}
-      </a>
-    ) : (
-      <div>{content}</div>
-    );
+    if (contact.link) {
+      return (
+        <a href={contact.link} target="_blank" rel="noopener noreferrer" className="block">
+          {content}
+        </a>
+      );
+    }
+    return <div>{content}</div>;
   };
 
   return (

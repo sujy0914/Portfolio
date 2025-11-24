@@ -1,17 +1,17 @@
 function About() {
-  const info = [
+  const person = [
     { label: "Name", value: "김태이", icon: "user" },
     { label: "Phone", value: "010-2498-1104", icon: "phone" },
     { label: "Birth Date", value: "2004.11.16", icon: "calendar" },
     { label: "Location", value: "인천광역시 미추홀구", icon: "location" },
   ];
 
-  const education = [
+  const edu = [
     { main: "영화국제관광고등학교 호텔경영학과 졸업", sub: "Younghwa International Tourism High School" },
     { main: "인하공업전문대학 컴퓨터정보공학과 졸업예정", sub: "Inha Technical College" },
   ];
 
-  const certs = ["운전면허 2종보통", "워드프로세스", "구름톤 수료", "해커톤 참가"];
+  const cer = ["운전면허 2종보통", "워드프로세스", "구름톤 수료", "해커톤 참가"];
 
   const icons = {
     user: "M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z",
@@ -31,7 +31,6 @@ function About() {
 
       <div className="bg-gradient-to-br from-white to-bg-card rounded-lg sm:rounded-xl p-2.5 sm:p-3 lg:p-3.5 shadow-xl border border-neutral-100">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5 items-center">
-          
           <div className="lg:col-span-1 flex justify-center">
             <div className="relative">
               <div className="absolute -inset-1.5 sm:-inset-2 lg:-inset-2.5 bg-gradient-to-r from-primary/20 to-primary-light/20 rounded-full blur-xl"></div>
@@ -44,9 +43,8 @@ function About() {
           </div>
 
           <div className="lg:col-span-2 space-y-2 sm:space-y-2.5 lg:space-y-3">
-            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5 sm:gap-2 lg:gap-2.5">
-              {info.map((item) => (
+              {person.map((item) => (
                 <div key={item.label} className="bg-white rounded-lg p-2 sm:p-2.5 lg:p-3 shadow-md border border-neutral-100 hover:shadow-lg transition-all duration-300">
                   <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-2.5">
                     <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 bg-gradient-to-br from-primary to-primary-dark rounded-lg flex items-center justify-center shadow-md">
@@ -75,13 +73,13 @@ function About() {
                 </div>
                 <h3 className="text-sm sm:text-base lg:text-lg text-neutral-800 font-bold">Education</h3>
               </div>
-              <div className="space-y-1 sm:space-y-1.5"> 
-                {education.map((edu, i) => (
+              <div className="space-y-1 sm:space-y-1.5">
+                {edu.map((item, i) => (
                   <div key={i} className="flex items-start gap-1.5">
                     <div className="w-1 h-1 bg-primary rounded-full mt-1.5 flex-shrink-0"></div>
                     <div>
-                      <p className="text-[10px] sm:text-xs lg:text-sm text-neutral-700 font-medium">{edu.main}</p>
-                      <p className="text-[10px] text-neutral-500">{edu.sub}</p>
+                      <p className="text-[10px] sm:text-xs lg:text-sm text-neutral-700 font-medium">{item.main}</p>
+                      <p className="text-[10px] text-neutral-500">{item.sub}</p>
                     </div>
                   </div>
                 ))}
@@ -98,28 +96,27 @@ function About() {
                 <h3 className="text-sm sm:text-base lg:text-lg text-neutral-800 font-bold">Certifications & Activities</h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-1.5">
-                {certs.map((cert, i) => (
+                {cer.map((item, i) => (
                   <div key={i} className="flex items-center gap-1.5 p-1 sm:p-1.5 bg-gradient-to-r from-primary/5 to-primary-light/5 rounded-lg">
                     <div className="w-1 h-1 bg-primary rounded-full"></div>
-                    <span className="text-[10px] sm:text-xs lg:text-sm text-neutral-700 font-medium">{cert}</span>
+                    <span className="text-[10px] sm:text-xs lg:text-sm text-neutral-700 font-medium">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-primary/10 to-primary-light/10 rounded-lg p-2.5 sm:p-3 lg:p-3.5 border-l-2 border-primary">
-              <div className="flex items-start gap-1.5 sm:gap-2">
-                <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <div className="bg-white rounded-lg p-2.5 sm:p-3 lg:p-3.5 shadow-md border border-neutral-100">
+              <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
+                <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-primary to-primary-dark rounded-lg flex items-center justify-center">
                   <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <div>
-                  <p className="text-[10px] sm:text-xs lg:text-sm text-neutral-800 font-medium leading-relaxed">
-                    "아이디어를 빠르게 서비스로 구현하는 개발자입니다."
-                  </p>
-                </div>
+                <h3 className="text-sm sm:text-base lg:text-lg text-neutral-800 font-bold">Motto</h3>
               </div>
+              <p className="text-[10px] sm:text-xs lg:text-sm text-neutral-700 font-medium leading-relaxed">
+                "아이디어를 빠르게 서비스로 구현하는 개발자입니다."
+              </p>
             </div>
           </div>
         </div>
