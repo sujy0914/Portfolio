@@ -70,22 +70,29 @@ function Projects() {
   const ProjectCard = ({ project }) => (
     <div
       onClick={() => setSelectedProject(project)}
-      className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 aspect-[5/4] flex flex-col h-full cursor-pointer max-w-[280px] sm:max-w-[320px]"
+      className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg 
+                 transition-all duration-300 hover:scale-105 flex flex-col 
+                 cursor-pointer w-[280px] sm:w-[320px]"
     >
-      <div className="flex-1 min-h-0">
+      {/* 이미지 영역 - 고정된 높이로 크기 통일 */}
+      <div className="w-full h-[220px] sm:h-[240px] relative flex-shrink-0">
         {project.img ? (
           <img 
             src={project.img} 
             alt={project.name} 
-            className="w-full h-full object-cover" 
+            className="absolute inset-0 w-full h-full object-cover" 
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
-            <span className="text-xs text-primary font-bold text-center px-2">{project.name}</span>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+            <span className="text-xs text-primary font-bold text-center px-2">
+              {project.name}
+            </span>
           </div>
         )}
       </div>
-      <div className="p-2 text-center bg-gradient-to-r from-primary/10 to-primary/5 flex-shrink-0">
+
+      {/* 텍스트 영역 */}
+      <div className="p-2 text-center bg-gradient-to-r from-primary/10 to-primary/5">
         <h3 className="font-bold text-xs sm:text-sm text-neutral-800 mb-0.5">{project.name}</h3>
         <p className="text-[10px] sm:text-xs text-neutral-600">{project.desc}</p>
       </div>
@@ -155,6 +162,7 @@ function Projects() {
         Projects
       </h2>
 
+      {/* ✅ 원래 정렬 복원 */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 justify-items-center max-w-3xl mx-auto">
         {projects.map((project, i) => (
           <ProjectCard key={i} project={project} />

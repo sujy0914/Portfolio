@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Navbar() {
+function Navbar({ onPrint }) {
   const [active, setActive] = useState("about me");
   const [isOpen, setIsOpen] = useState(false);
   const menu = ["About me", "Skills", "Projects", "Contact"];
@@ -30,31 +30,57 @@ function Navbar() {
           Portfolio
         </div>
         
-        <ul className="hidden lg:flex gap-6 xl:gap-8 2xl:gap-12 text-base lg:text-lg xl:text-xl">
-          {menu.map((item) => (
-            <li
-              key={item}
-              className={`cursor-pointer transition-all duration-300 hover:scale-110 ${
-                active === item.toLowerCase()
-                  ? "text-primary font-semibold"
-                  : "text-neutral-600 hover:text-primary"
-              }`}
-              onClick={() => scrollToSection(item)}
+        <div className="hidden lg:flex items-center gap-4 xl:gap-6 2xl:gap-8">
+          <ul className="flex gap-6 xl:gap-8 2xl:gap-12 text-base lg:text-lg xl:text-xl">
+            {menu.map((item) => (
+              <li
+                key={item}
+                className={`cursor-pointer transition-all duration-300 hover:scale-110 ${
+                  active === item.toLowerCase()
+                    ? "text-primary font-semibold"
+                    : "text-neutral-600 hover:text-primary"
+                }`}
+                onClick={() => scrollToSection(item)}
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+          {onPrint && (
+            <button
+              onClick={onPrint}
+              className="px-3 py-1.5 bg-[#8B6C42] text-white font-semibold rounded-lg shadow-md hover:bg-[#C39B6A] transition-colors duration-300 flex items-center justify-center gap-1.5 text-xs lg:text-sm"
             >
-              {item}
-            </li>
-          ))}
-        </ul>
+              <svg className="w-3.5 h-3.5 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+              </svg>
+              <span className="hidden xl:inline">인쇄하기</span>
+            </button>
+          )}
+        </div>
 
-        <button
-          className="lg:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className={`w-6 h-0.5 bg-neutral-800 transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-          <span className={`w-6 h-0.5 bg-neutral-800 transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
-          <span className={`w-6 h-0.5 bg-neutral-800 transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-        </button>
+        <div className="lg:hidden flex items-center gap-2">
+          {onPrint && (
+            <button
+              onClick={onPrint}
+              className="px-2.5 py-1.5 bg-[#8B6C42] text-white font-semibold rounded-lg shadow-md hover:bg-[#C39B6A] transition-colors duration-300 flex items-center justify-center gap-1 text-xs"
+            >
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+              </svg>
+              <span className="hidden sm:inline text-xs">인쇄</span>
+            </button>
+          )}
+          <button
+            className="flex flex-col gap-1.5 p-2"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`w-6 h-0.5 bg-neutral-800 transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+            <span className={`w-6 h-0.5 bg-neutral-800 transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`w-6 h-0.5 bg-neutral-800 transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+          </button>
+        </div>
 
         {isOpen && (
           <div className="absolute top-full left-0 right-0 bg-white border-b border-neutral-200 shadow-lg lg:hidden">

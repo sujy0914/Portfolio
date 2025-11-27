@@ -5,9 +5,78 @@ import Contact from "./components/Contact";
 import Navbar from "./components/Navbar";
 
 function App() {
+  const openPdfViewer = () => {
+    const pdfUrl = `${window.location.origin}/printout.pdf`;
+    const viewer = window.open("", "_blank", "width=900,height=1200");
+
+    if (!viewer) {
+      return null;
+    }
+
+    const template = `
+      <!DOCTYPE html>
+      <html lang="ko">
+        <head>
+          <meta charset="UTF-8" />
+          <title>포트폴리오 인쇄</title>
+          <style>
+            html, body {
+              margin: 0;
+              padding: 0;
+              height: 100%;
+              background: #fdfaf5;
+            }
+            iframe {
+              width: 100%;
+              height: 100%;
+              border: 0;
+            }
+          </style>
+        </head>
+        <body>
+          <iframe id="pdfFrame" src="${pdfUrl}" title="portfolio-print"></iframe>
+          <script>
+            (function () {
+              const iframe = document.getElementById("pdfFrame");
+              const notifyAndPrint = () => {
+                alert("PDF가 새 창에서 열렸습니다. 잠시 후 인쇄 창이 실행됩니다.");
+                const frameWindow = iframe.contentWindow || window;
+                frameWindow.focus();
+                frameWindow.print();
+              };
+
+              iframe.addEventListener("load", () => {
+                setTimeout(notifyAndPrint, 300);
+              });
+            })();
+          <\\/script>
+        </body>
+      </html>
+    `;
+
+    viewer.document.write(template);
+    viewer.document.close();
+    return viewer;
+  };
+
+  const handlePrint = () => {
+    const pdfUrl = `${window.location.origin}/printout.pdf`;
+    const viewer = window.open(pdfUrl, "_blank");
+  
+    if (!viewer) {
+      alert("팝업이 차단되었습니다. 브라우저에서 팝업 허용 후 다시 시도해주세요.");
+      return;
+    }
+  
+    setTimeout(() => {
+      viewer.focus();
+      viewer.print();
+    }, 500);
+  };  
+
   return (
     <div className="min-h-screen bg-white text-neutral-800 font-sans">
-      <Navbar />
+      <Navbar onPrint={handlePrint} />
       <main className="max-w-7xl mx-auto px-4 pb-8">
         <section
           id="home"
@@ -15,10 +84,10 @@ function App() {
         >
           <div className="max-w-4xl w-full text-left">
             <div className="mb-10 sm:mb-12 text-center">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-[#8B6C42] mb-2">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#8B6C42] mb-2">
                 백엔드 개발자
               </h1>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#C39B6A] mb-8">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#C39B6A] mb-8">
                 김태이
               </h2>
 
@@ -34,7 +103,7 @@ function App() {
                 <p className="mb-10">
                   단순히 동작하는 코드보다, 전체 시스템의 흐름과 구조를 고민하는 것을 중요하게 생각합니다.
                   개인 프로젝트를 진행하며 서버 설계, API 구성, 데이터베이스 관리까지 경험하면서
-                  <span className="font-medium text-[#8B6C42]">효율적이고 확장 가능한 구조</span>을 설계하는 능력을 키웠습니다.
+                  <span className="font-medium text-[#8B6C42]">효율적이고 확장 가능한 구조</span>를 설계하는 능력을 키웠습니다.
                 </p>
 
                 <h3 className="text-lg sm:text-xl font-semibold text-[#8B6C42] mb-1">
@@ -54,7 +123,7 @@ function App() {
                   문제를 해결하는 과정 자체가 학습의 순간이 되며, 점차 더 견고하고 안정적인 시스템을 만들 수 있는 기반이 됩니다.
                 </p>
 
-                <p>
+                <p className="mt-6">
                   앞으로도 새로운 기술을 지속적으로 탐구하며,
                   사용자에게 신뢰와 편안함을 제공하는 백엔드 개발자가 되겠습니다.
                   안정적이고 확장 가능한 서비스를 설계하며, 팀과 함께 성장할 수 있는 개발자가 목표입니다.
@@ -101,3 +170,4 @@ function App() {
 }
 
 export default App;
+  

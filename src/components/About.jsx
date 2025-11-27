@@ -57,7 +57,7 @@ function About() {
                     </div>
                     <div>
                       <p className="text-[10px] sm:text-xs text-neutral-500 font-medium">{item.label}</p>
-                      <p className="text-xs sm:text-sm lg:text-base text-neutral-800 font-semibold">{item.value}</p>
+                      <p className="text-xs sm:text-sm lg:text-base text-neutral-800">{item.value}</p>
                     </div>
                   </div>
                 </div>
@@ -71,7 +71,7 @@ function About() {
                     <path d={icons.education} />
                   </svg>
                 </div>
-                <h3 className="text-sm sm:text-base lg:text-lg text-neutral-800 font-bold">Education</h3>
+                <h3 className="text-sm sm:text-base lg:text-lg text-neutral-500">Education</h3>
               </div>
               <div className="space-y-1 sm:space-y-1.5">
                 {edu.map((item, i) => (
@@ -93,7 +93,7 @@ function About() {
                     <path fillRule="evenodd" d={icons.cert} clipRule="evenodd" />
                   </svg>
                 </div>
-                <h3 className="text-sm sm:text-base lg:text-lg text-neutral-800 font-bold">Certifications & Activities</h3>
+                <h3 className="text-sm sm:text-base lg:text-lg text-neutral-500">Certifications & Activities</h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-1.5">
                 {cer.map((item, i) => (
@@ -112,10 +112,10 @@ function About() {
                     <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h3 className="text-sm sm:text-base lg:text-lg text-neutral-800 font-bold">Motto</h3>
+                <h3 className="text-sm sm:text-base lg:text-lg text-neutral-500">Developer Tagline</h3>
               </div>
               <p className="text-[10px] sm:text-xs lg:text-sm text-neutral-700 font-medium leading-relaxed">
-                "아이디어를 빠르게 서비스로 구현하는 개발자입니다."
+                "한 번 시작한 일은 끝을 보는 집중형 개발자입니다."
               </p>
             </div>
           </div>
